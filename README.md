@@ -10,7 +10,6 @@ I'm a passionate **Web Developer**, **AI Prompt Engineer**, and **WordPress Deve
 
 - 🔹 Web Development (HTML, CSS, JavaScript, React)
 - 🔹 AI Prompt Engineering (GPT-based models, AI automation)
-- 🔹 WordPress Development (Custom themes, plugins, site optimization)
 - 🔹 UI/UX Design (Figma, Adobe XD)
 - 🔹 SEO & Performance Optimization
 
@@ -24,7 +23,6 @@ I'm a passionate **Web Developer**, **AI Prompt Engineer**, and **WordPress Deve
 ## 🛠️ Tools I Use
 
 ![Visual Studio Code](https://img.shields.io/badge/VS%20Code-0078D4?style=for-the-badge&logo=visualstudiocode&logoColor=white)
-![WordPress](https://img.shields.io/badge/WordPress-21759B?style=for-the-badge&logo=wordpress&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 ---
