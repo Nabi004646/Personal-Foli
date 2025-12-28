@@ -20,9 +20,6 @@ I'm a passionate **Web Developer**, **AI Prompt Engineer**, and **WordPress Deve
 [![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Now-brightgreen?style=for-the-badge)](https://nabie.netlify.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow%20Me-black?style=for-the-badge&logo=github)](https://github.com/Nabi004646)
 
-## 📈 GitHub Stats
-
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=yourgithub&show_icons=true&theme=tokyonight)
 
 ## 🛠️ Tools I Use
 
