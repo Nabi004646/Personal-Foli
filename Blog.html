@@ -1,111 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sorry, Beautiful</title>
-      <link rel="icon" type="image/x-icon" href="/favv/favicon.ico">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sorry, Beautiful</title>
+  <link rel="icon" type="image/x-icon" href="/favv/favicon.ico" />
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        text-align: center;
+  <!-- Google Font: Inter (subsets & display for performance) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #071225;
+      --bg-2: #0f2a35;
+      --bg-3: #1f3e45;
+      --card-bg: rgba(255,255,255,0.06);
+      --accent: #ff5c5c;
+      --accent-strong: #ff3131;
+      --text: rgba(255,255,255,0.96);
+      --muted: rgba(255,255,255,0.82);
+      --muted-2: rgba(255,255,255,0.72);
+      --radius: 18px;
+      --shadow: 0 22px 48px rgba(3,10,18,0.6);
+      --container-max: 1100px;
     }
 
-    .container {
-        max-width: 600px;
-        padding: 40px;
-        background: rgba(255,255,255,0.08);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        animation: pop 0.6s ease-in-out;
+    /* Preserve safe-area on mobile */
+    html {
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      box-sizing: border-box;
+    }
+    *,*::before,*::after { box-sizing: inherit; }
+
+    body{
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.45;
+      padding: 28px;
+    }
+
+    main.wrapper {
+      width: 100%;
+      max-width: var(--container-max);
+    }
+
+    .card {
+      width: min(96%, 1000px);
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.012));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 0;
+      padding: clamp(18px, 3.6vw, 36px);
+      animation: pop 420ms cubic-bezier(.22,.9,.35,1);
     }
 
     @keyframes pop {
-        from { transform: scale(0.8); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
+      from { transform: translateY(6px) scale(.995); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
     }
 
+    /* accessibility: respects reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .card { animation: none; }
+    }
+
+    /* Two-column tablet / desktop layout */
+    @media (min-width: 720px) {
+      .card {
+        grid-template-columns: 1fr 340px;
+        padding: clamp(28px, 3.5vw, 56px);
+      }
+    }
+
+    .content {
+      text-align: left;
+      padding: 6px clamp(8px, 2.2vw, 18px);
+    }
+
+    /* Heading sizes are fluid via clamp */
     h1 {
-        font-size: 100px;
-        margin: 0;
-        color: #ff4d4d;
+      margin: 0 0 6px 0;
+      font-weight: 800;
+      color: var(--accent);
+      font-size: clamp(40px, 7.5vw, 92px);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+    .decor-emoji {
+      font-size: clamp(28px, 5.5vw, 44px);
+      margin-left: 8px;
+      vertical-align: middle;
     }
 
     h2 {
-        font-size: 26px;
-        margin: 10px 0;
+      margin: 6px 0 14px 0;
+      font-size: clamp(16px, 2.4vw, 22px);
+      color: var(--text);
+      font-weight: 600;
     }
 
     p {
-        font-size: 18px;
-        line-height: 1.6;
-        opacity: 0.9;
+      margin: 8px 0;
+      color: var(--muted-2);
+      font-size: clamp(14px, 1.9vw, 17px);
     }
 
-    .emoji {
-        font-size: 40px;
-        margin: 15px 0;
+    .actions {
+      margin-top: 18px;
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+      align-items:center;
     }
 
     .btn {
-        display: inline-block;
-        margin-top: 25px;
-        padding: 14px 30px;
-        background: #ff4d4d;
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 50px;
-        transition: 0.3s;
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+      color: white;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 26px rgba(255,92,92,0.18);
+      transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+      font-size: 15px;
+    }
+    .btn:hover, .btn:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(255,70,70,0.24);
+      outline: none;
+      filter: saturate(1.02);
+    }
+    .btn:focus { outline: 3px solid rgba(255,92,92,0.12); outline-offset: 4px; }
+
+    .meta {
+      margin-top: 12px;
+      color: var(--muted-2);
+      font-size: 13px;
     }
 
-    .btn:hover {
-        background: #ff1a1a;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(255,77,77,0.4);
+    /* Illustration column */
+    .aside {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: clamp(12px, 2.5vw, 18px);
+    }
+    .illu-wrap {
+      width: 100%;
+      max-width: 320px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding: 18px;
+      border-radius: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+    }
+    .illu-title {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 14px;
+    }
+    .illu-svg {
+      width: 100%;
+      height: auto;
+      display:block;
     }
 
-    .footer {
-        margin-top: 20px;
-        font-size: 14px;
-        opacity: 0.6;
+    /* Narrow screens: make button full width for easy tap */
+    @media (max-width: 620px) {
+      .card { padding: 16px; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; justify-content: center; }
+      .content { text-align: center; }
+      h1 { font-size: clamp(36px, 10vw, 72px); }
     }
-</style>
+
+    /* print */
+    @media print {
+      body { background: white; color: black; }
+      .card { background: transparent; box-shadow: none; }
+    }
+  </style>
 </head>
-
 <body>
+  <main class="wrapper" role="main" aria-labelledby="page-title">
+    <section class="card" aria-labelledby="page-title">
+      <div class="content">
+        <h1 id="page-title">Hey beautiful <span class="decor-emoji" aria-hidden="true">😍</span></h1>
 
-<div class="container">
-    <h1>Hey beautiful 😍 </h1>
-    <div class="emoji">🤯🚨</div>
-    <h2>OMG! Page Not Found</h2>
+        <h2>OMG! Page Not Found</h2>
 
-    <p>
-        Looks like this page was <strong>stolen by your neighbour</strong> 🏃‍♂️💨<br>
-        Or maybe it never existed on <strong>nabie's feed</strong>.
-    </p>
+        <p>
+          Looks like this page was <strong>stolen by your neighbour</strong> 🏃‍♂️💨
+          Or maybe it never existed on <strong>nabie's feed</strong>.
+        </p>
 
-    <p>
-        Don’t worry… we’re calling the internet police 👮‍♀️<br>
-        Meanwhile, go back before your neighbour steals more pages 😆
-    </p>
+        <p>
+          Don’t worry… we’re calling the internet police 👮‍♀️
+          Meanwhile, go back before your neighbour steals more pages 😆
+        </p>
 
-    <a href="/" class="btn">🏠 Take Me Home</a>
+        <div class="actions" role="group" aria-label="Primary actions">
+          <a href="/" class="btn" role="button" aria-label="Go to home page">🏠 Take Me Home</a>
+          <a href="mailto:hello@example.com" class="btn" style="background: transparent; color:var(--muted); box-shadow:none; border:1px solid rgba(255,255,255,0.04); font-weight:600;">
+            ✉️ Contact Admin
+          </a>
+        </div>
 
-    <div class="footer">
-        © 2025 OMG Blog — Powered by curiosity & stolen Wi-Fi 📶
-    </div>
-</div>
+        <div class="meta" aria-hidden="false">
+          © 2025 OMG Blog — Powered by curiosity & stolen Wi‑Fi 📶
+        </div>
+      </div>
 
+      <aside class="aside" aria-hidden="false" aria-label="Illustration">
+        <div class="illu-wrap" role="img" aria-label="Decorative illustration of lost page">
+          <svg class="illu-svg" viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#ff8b8b" stop-opacity="0.95"/>
+                <stop offset="1" stop-color="#ff4d4d" stop-opacity="0.95"/>
+              </linearGradient>
+              <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#ffd39e" stop-opacity="0.95"/>
+                <stop offset="1" stop-color="#ffb199" stop-opacity="0.95"/>
+              </linearGradient>
+            </defs>
+
+            <rect x="12" y="24" width="336" height="252" rx="18" fill="url(#g2)" opacity="0.14"/>
+            <g transform="translate(40,28)">
+              <rect x="0" y="0" width="220" height="160" rx="12" fill="rgba(255,255,255,0.04)"/>
+              <rect x="18" y="18" width="184" height="20" rx="6" fill="url(#g1)"/>
+              <rect x="18" y="54" width="140" height="10" rx="5" fill="rgba(255,255,255,0.06)"/>
+              <rect x="18" y="74" width="160" height="10" rx="5" fill="rgba(255,255,255,0.03)"/>
+              <rect x="18" y="94" width="120" height="10" rx="5" fill="rgba(255,255,255,0.03)"/>
+              <g transform="translate(160,110)">
+                <circle cx="18" cy="18" r="18" fill="#ffd39e" opacity="0.95"/>
+                <text x="18" y="23" text-anchor="middle" font-size="18" font-weight="700" fill="#6b2a2a" font-family="Inter, sans-serif">?</text>
+              </g>
+            </g>
+
+            <g transform="translate(270,220) rotate(-12)">
+              <rect x="0" y="0" width="68" height="44" rx="8" fill="url(#g1)"/>
+              <text x="34" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="white" font-family="Inter, sans-serif">404</text>
+            </g>
+          </svg>
+
+          <div class="illu-title">Lost page — visual hint</div>
+        </div>
+      </aside>
+    </section>
+  </main>
 </body>
 </html>
